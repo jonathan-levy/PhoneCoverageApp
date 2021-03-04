@@ -4,7 +4,7 @@ PhoneCoverageApp is a ExpressJs app that check phone coverage for a given addres
 
 ## Prerequesite
 
-Have [node](nodejs.org) install
+Have [node](nodejs.org) installed
 
 ## Installation
 

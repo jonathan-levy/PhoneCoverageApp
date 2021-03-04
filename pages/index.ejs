@@ -1,0 +1,81 @@
+<html>
+
+<head>
+	<title>
+		phone coverage app
+	</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script>
+
+		//Ajax to post input data and reload page
+		$(document).ready(function () {
+			$('form').on('submit', function () {
+				var inputQuery = $('form input');
+				var queryParam = { item: inputQuery.val() };
+				$.ajax({
+					type: 'POST',
+					url: '/',
+					data: queryParam,
+					success: function (data) {
+						location.reload();
+					}
+				});
+				return false;
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<h1>Insert your address to get you phone coverage </h1>
+
+	<form>
+		<input type="text" name="item" placeholder="Insert address here..." required />
+		<button type="submit">Submit</button>
+	</form>
+
+	<!-- Js templating for Error management -->
+	<% if(data.Error) { %>
+		<p>
+			Err: Please enter a valid address
+		</p>
+	<% }%>
+
+	<!-- Js templating for displaying result -->
+	<% if(data.Display) { %>
+		<ul>
+			<% for(var i=0 ; i < data.ArrOperateur.length; i++){ %>
+				<li>
+					<% if (data[data.ArrOperateur[i]].On) { %>
+						<p>
+							<%- data.ArrOperateur[i] %>
+						</p>
+					<% }else {%>
+						<p>
+							<%- data.ArrOperateur[i] %> NOK
+						</p>
+					<% } %>
+							<% if (data[data.ArrOperateur[i]]['2G']) {%>
+								<p>2G : OK</p>
+							<% }else {%>
+								<p>2G : NOK</p>
+							<% } %>
+							<% if (data[data.ArrOperateur[i]]['3G']) {%>
+								<p>3G : OK</p>
+							<% }else { %>
+								<p>3G : NOK</p>
+							<% } %>
+							<% if (data[data.ArrOperateur[i]]['4G']) {%>
+								<p>4G : OK</p>
+							<% }else {%>
+								<p> 4G : NOK </p>
+							<% } %>
+				</li>
+				<% } %>
+		</ul>
+	<% } %>
+</body>
+
+</html>

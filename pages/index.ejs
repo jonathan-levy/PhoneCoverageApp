@@ -11,8 +11,8 @@
 		//Ajax to post input data and reload page
 		$(document).ready(function () {
 			$('form').on('submit', function () {
-				var inputQuery = $('form input');
-				var queryParam = { item: inputQuery.val() };
+				let inputQuery = $('form input');
+				let queryParam = { item: inputQuery.val() };
 				$.ajax({
 					type: 'POST',
 					url: '/',
@@ -46,7 +46,7 @@
 	<!-- Js templating for displaying result -->
 	<% if(data.Display) { %>
 		<ul>
-			<% for(var i=0 ; i < data.ArrOperateur.length; i++){ %>
+			<% for(let i=0 ; i < data.ArrOperateur.length; i++){ %>
 				<li>
 					<% if (data[data.ArrOperateur[i]].On) { %>
 						<p>

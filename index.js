@@ -55,17 +55,17 @@ app.post('/', (req, res) => {
                 }
 
                 //Get coordonates of tower and address
-                var x1 = bodyParsed.features[0].properties.x;
-                var x2 = dataTower[i].X;
-                var y1 = bodyParsed.features[0].properties.y;
-                var y2 = dataTower[i].Y;
+                let x1 = bodyParsed.features[0].properties.x;
+                let x2 = dataTower[i].X;
+                let y1 = bodyParsed.features[0].properties.y;
+                let y2 = dataTower[i].Y;
 
                 //Compare coordonates between tower and address
-                var distance = dist(x1, x2, y1, y2);
+                let distance = dist(x1, x2, y1, y2);
 
                 //if tower is in distance get operateur and phone coverage
                 if (distance < 5000) {
-                    var contextOperateur = dataTower[i].Operateur;
+                    let contextOperateur = dataTower[i].Operateur;
                     operateur[contextOperateur]['On'] = 1;
                     if (dataTower[i]['2G']) {
                         operateur[contextOperateur]['2G'] = 1;
